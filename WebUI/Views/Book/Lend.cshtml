@@ -1,0 +1,36 @@
+﻿@model LendBookViewModel
+
+@{
+    ViewData["Title"] = "Lend Book";
+}
+<div class="card shadow border-0 rounded offset-2 col-8 mt-5">
+    <div class="card-header">
+        <div class="row p-3">
+            <h2 class="text-info">Lend Book</h2>
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-controller="Book" asp-action="Lend">
+            <input asp-for="ImageUrl" hidden />
+            <input asp-for="Id" hidden />
+            <div class="row">
+                <div class="col-7">
+
+                    <partial name="_LendBookForm" data="@Model" />
+
+                </div>
+                <div class="col-5">
+                    <img class="p-3" src="~/@Model.ImageUrl"
+                         style="width:100%; border-radius:10px; border:1px solid #ffffff" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

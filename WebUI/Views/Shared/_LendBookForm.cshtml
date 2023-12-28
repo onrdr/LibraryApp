@@ -1,0 +1,35 @@
+﻿@model LendBookViewModel
+
+
+<div class="border-0 p-3">
+    <div class="row">
+        <div class="form-floating py-2 col-12 mb-3">
+            <input asp-for="Name" class="form-control rounded" readonly />
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <label asp-for="Name" class="ms-0"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-floating py-2 col-12 mb-3">
+            <input asp-for="BorrowedBy" class="form-control rounded" />
+            <span asp-validation-for="BorrowedBy" class="text-danger"></span>
+            <label asp-for="BorrowedBy" class="ms-0"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-floating py-2 col-12 mb-3">
+            <input asp-for="ReturnDate" type="date" class="form-control rounded" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            <span asp-validation-for="ReturnDate" class="text-danger"></span>
+            <label asp-for="ReturnDate" class="ms-0"></label>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-6">
+            <button type="submit" class="form-control btn btn-success rounded shadow">Lend</button>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Book" asp-action="Index" class="form-control btn btn-outline-info shadow">Back To List</a>
+        </div>
+    </div>
+</div>
+
