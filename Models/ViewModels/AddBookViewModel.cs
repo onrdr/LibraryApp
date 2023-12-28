@@ -17,5 +17,6 @@ public class AddBookViewModel
     [StringLength(50)]
     public string AuthorName { get; set; }
 
+    [Display(Name = "Image")]
     public string? ImageUrl { get; set; }
 }

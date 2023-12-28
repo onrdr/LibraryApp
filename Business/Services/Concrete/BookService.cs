@@ -68,6 +68,12 @@ public class BookService(
             return new ErrorResult(Messages.BookNotFound);
         }
 
+        var canUserBorrowBook = await _bookRepository.CanUserBorrowBook(model, ct);
+        if (!canUserBorrowBook)
+        {
+            return new ErrorResult(Messages.LendNotAllowed);
+        }
+
         CompleteLendBookUpdate(model, book);
         return await GetUpdateResultAsync(book);
     }

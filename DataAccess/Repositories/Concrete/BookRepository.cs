@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Models.Entities.Concrete;
+using Models.ViewModels;
 using System.Linq.Expressions;
 
 namespace DataAccess.Repositories.Concrete;
@@ -15,5 +16,16 @@ public class BookRepository(ApplicationDbContext dbContext) : BaseRepository<Boo
             .ToListAsync(ct);
 
         return books;
+    }
+
+    public async Task<bool> CanUserBorrowBook(LendBookViewModel model, CancellationToken ct)
+    {
+        var hasDueDatePastBook = await _dataContext.Books
+            .AnyAsync(b =>
+                b.BorrowedBy != null &&
+                b.BorrowedBy.ToLower().Trim() == model.BorrowedBy.ToLower().Trim() &&
+                b.ReturnDate < DateTime.Now, ct);
+
+        return !hasDueDatePastBook;
     }
 }

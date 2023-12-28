@@ -34,6 +34,7 @@ public class BookController(
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Lend(LendBookViewModel lendBookViewModel)
     {
         var validationResult = __lendBookModelValidator.Validate(lendBookViewModel);
@@ -47,7 +48,7 @@ public class BookController(
         if (!bookResult.Success)
         {
             TempData["ErrorMessage"] = bookResult.Message;
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Lend), new { id = lendBookViewModel.Id });
         }
 
         TempData["SuccessMessage"] = Messages.LendBookSuccessfull;
@@ -77,6 +78,7 @@ public class BookController(
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Add(AddBookViewModel addBookViewModel, IFormFile? file)
     {
         HandleImageUpload(addBookViewModel, file);
@@ -87,7 +89,7 @@ public class BookController(
             TempData["ErrorMessage"] = addBookResult.Message;
             return View();
         }
-        
+
         TempData["SuccessMessage"] = addBookResult.Message;
         return RedirectToAction(nameof(Index));
     }

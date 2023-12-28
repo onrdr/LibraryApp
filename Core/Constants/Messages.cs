@@ -17,4 +17,7 @@ public class Messages
     public const string LendBookSuccessfull = "Book successfully lended";
     public const string ReturnBookSuccessfull = "Book successfully returned";
     public const string BookReturnDateError = "Book returned late!!! Dont forget to get money for extra days";
+
+    public const string LendNotAllowed = "This user is not allowed to borrow the book. The user has an overdue book.";
+
 }
