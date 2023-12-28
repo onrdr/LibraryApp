@@ -63,8 +63,10 @@ Frontend
  cd LibraryApp
 ```
 
-### 3- Open project solution file
-- Open the LibraryApp.sln file with a code editor (preferably Visual Studio)
+### 3- Open the LibraryApp.sln file with a code editor (preferably Visual Studio)
+```
+ start LibraryApp.sln
+```
 
 ### 4- Open WebUI Project Folders
 - Find appsettings.Development.json file and change the connection string with yours.
