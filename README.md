@@ -37,6 +37,7 @@ Backend
 - Entity Framework Core
 - MSSQL Server
 - AutoMapper
+- SeriLog
 - Initial Database Seeding with Migration
   
 Frontend
