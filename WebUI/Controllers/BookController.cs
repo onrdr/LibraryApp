@@ -40,7 +40,7 @@ public class BookController(
         if (!validationResult.IsValid)
         {
             TempData["ErrorMessage"] = validationResult.Errors.First().ToString();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Lend), new { id = lendBookViewModel.Id });
         }
 
         var bookResult = await _bookService.UpdateLendedBookAsync(lendBookViewModel, default);
