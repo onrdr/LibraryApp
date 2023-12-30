@@ -68,14 +68,20 @@ public class BookService(
             return new ErrorResult(Messages.BookNotFound);
         }
 
-        var canUserBorrowBook = await _bookRepository.CanUserBorrowBook(model, ct);
-        if (!canUserBorrowBook)
+        var hasOverDueBook = await _bookRepository.DoesUserHaveOverDueBook(model, ct);
+        if (hasOverDueBook)
         {
-            return new ErrorResult(Messages.LendNotAllowed);
+            return new ErrorResult(Messages.BookOverDueError);
+        }
+
+        var userReachedMax = await _bookRepository.DoesUserReachMaximumAllowedCount(model, ct);
+        if (userReachedMax)
+        {
+            return new ErrorResult(Messages.MaxBookCountError);
         }
 
         CompleteLendBookUpdate(model, book);
-        return await GetUpdateResultAsync(book);
+        return await GetUpdateResultAsync(book, ct);
     }
 
     public async Task<IResult> UpdateReturnedBookAsync(Guid bookId, CancellationToken ct)
@@ -87,7 +93,7 @@ public class BookService(
         }
 
         CompleteReturnBookUpdate(book);
-        return await GetUpdateResultAsync(book);
+        return await GetUpdateResultAsync(book, ct);
     }
     #endregion
 
@@ -142,7 +148,7 @@ public class BookService(
     {
         bookToUpdate.IsAvailable = false;
         bookToUpdate.ReturnDate = model.ReturnDate;
-        bookToUpdate.BorrowedBy = model.BorrowedBy;
+        bookToUpdate.BorrowedBy = model.BorrowedBy.ToUpper();
     }
 
     private static void CompleteReturnBookUpdate(Book bookToUpdate)
@@ -152,9 +158,9 @@ public class BookService(
         bookToUpdate.BorrowedBy = null;
     }
 
-    private async Task<IResult> GetUpdateResultAsync(Book book)
+    private async Task<IResult> GetUpdateResultAsync(Book book, CancellationToken ct)
     {
-        var updateResult = await _bookRepository.UpdateAsync(book);
+        var updateResult = await _bookRepository.UpdateAsync(book, ct);
         return updateResult > 0
             ? new SuccessResult(Messages.BookUpdateSuccessfull)
             : new ErrorResult(Messages.BookUpdateError);

@@ -29,7 +29,7 @@ public static class BookSeeder
                 ImageUrl = "images\\book\\default.jpg",
                 AuthorId = Guid.Parse("e5d7b08b-6c9c-4dbb-99f5-cfe1befa9659"),
                 IsAvailable = false,
-                BorrowedBy = "Onur Derman",
+                BorrowedBy = "Onur Derman".ToUpper(),
                 ReturnDate = DateTime.Now.AddDays(7),
             },
             new()
@@ -48,7 +48,7 @@ public static class BookSeeder
                 ImageUrl = "images\\book\\default.jpg",
                 AuthorId = Guid.Parse("503939b1-a170-4474-aa31-f89f5c878bbb"),
                 IsAvailable = false,
-                BorrowedBy = "Onur Derman",
+                BorrowedBy = "Onur Derman".ToUpper(),
                 ReturnDate = DateTime.Now.AddDays(-7),
             },
             new()
@@ -115,7 +115,7 @@ public static class BookSeeder
                 ImageUrl = "images\\book\\default.jpg",
                 AuthorId = Guid.Parse("a8305503-a8da-4830-bcec-fa985e594a90"),
                 IsAvailable = false,
-                BorrowedBy = "Onur Derman",
+                BorrowedBy = "Onur Derman".ToUpper(),
                 ReturnDate = DateTime.Now.AddDays(3),
             },
             new()

@@ -9,7 +9,7 @@ function loadDataTable() {
         "columns": [
             {
                 data: 'imageUrl',
-                "width": "15%",
+                "width": "10%",
                 "render": function (data) {
                     if (data !== null) {
                         return `<div>
@@ -38,7 +38,7 @@ function loadDataTable() {
             },
             {
                 data: 'borrowedBy',
-                "width": "10%",
+                "width": "15%",
                 "render": function (data) {
                     return data !== null ? data : '-';
                 }
@@ -52,7 +52,7 @@ function loadDataTable() {
             },
             {
                 data: 'id',
-                "width": "15%",
+                "width": "17%",
                 "render": function (data, type, row) {
                     var isBookAvailable = row.returnDate === null;
                     const returnDate = new Date(row.returnDate);

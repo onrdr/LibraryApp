@@ -9,6 +9,7 @@ public class LendBookValidator : AbstractValidator<LendBookViewModel>
     public LendBookValidator()
     {
         RuleFor(x => x.ReturnDate)
-            .DateTimeShouldBeGreaterThanNow();
+            .DateTimeShouldBeGreaterThanNow()
+            .DateTimeShouldBeWithinAMonthRange();
     }
 }

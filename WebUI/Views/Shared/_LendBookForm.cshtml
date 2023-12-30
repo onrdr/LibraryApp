@@ -18,7 +18,7 @@
     </div>
     <div class="row">
         <div class="form-floating py-2 col-12 mb-3">
-            <input asp-for="ReturnDate" type="date" class="form-control rounded" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            <input asp-for="ReturnDate" type="date" class="form-control rounded" value="@DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")" />
             <span asp-validation-for="ReturnDate" class="text-danger"></span>
             <label asp-for="ReturnDate" class="ms-0"></label>
         </div>

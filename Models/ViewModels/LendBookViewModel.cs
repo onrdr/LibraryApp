@@ -11,9 +11,11 @@ public class LendBookViewModel
 
     [Required]
     [StringLength(50)]
+    [Display(Name = "Borrowed By")]
     public string BorrowedBy { get; set; }
 
     [Required]
+    [Display(Name = "Return Date")]
     public DateTimeOffset ReturnDate { get; set; }
 
     public string ImageUrl { get; set; }

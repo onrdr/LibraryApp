@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231228135057_InitialMigration")]
+    [Migration("20231230211328_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -97,18 +97,18 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("84c52f0a-401d-40d2-80a1-281e48d5c17e"),
                             AuthorId = new Guid("e5d7b08b-6c9c-4dbb-99f5-cfe1befa9659"),
-                            BorrowedBy = "Onur Derman",
-                            ISBN = "69f74007",
+                            BorrowedBy = "ONUR DERMAN",
+                            ISBN = "800929a7",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = false,
                             Name = "Book 1",
-                            ReturnDate = new DateTimeOffset(new DateTime(2024, 1, 4, 16, 50, 56, 707, DateTimeKind.Unspecified).AddTicks(9444), new TimeSpan(0, 3, 0, 0, 0))
+                            ReturnDate = new DateTimeOffset(new DateTime(2024, 1, 7, 0, 13, 27, 522, DateTimeKind.Unspecified).AddTicks(4800), new TimeSpan(0, 3, 0, 0, 0))
                         },
                         new
                         {
                             Id = new Guid("db63310e-3ddc-4715-a9cd-1f0cf4b14a59"),
                             AuthorId = new Guid("a8305503-a8da-4830-bcec-fa985e594a90"),
-                            ISBN = "9d134cdd",
+                            ISBN = "8d95fddd",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = true,
                             Name = "Book 2"
@@ -117,18 +117,18 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("5c3a0e12-2bc9-45e1-abb3-c3201c94295e"),
                             AuthorId = new Guid("503939b1-a170-4474-aa31-f89f5c878bbb"),
-                            BorrowedBy = "Onur Derman",
-                            ISBN = "a013b63c",
+                            BorrowedBy = "ONUR DERMAN",
+                            ISBN = "38bca0d5",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = false,
                             Name = "Book 3",
-                            ReturnDate = new DateTimeOffset(new DateTime(2023, 12, 21, 16, 50, 56, 707, DateTimeKind.Unspecified).AddTicks(9517), new TimeSpan(0, 3, 0, 0, 0))
+                            ReturnDate = new DateTimeOffset(new DateTime(2023, 12, 24, 0, 13, 27, 522, DateTimeKind.Unspecified).AddTicks(4886), new TimeSpan(0, 3, 0, 0, 0))
                         },
                         new
                         {
                             Id = new Guid("b64f2fee-3829-4b9b-af12-bfee40fde344"),
                             AuthorId = new Guid("e5d7b08b-6c9c-4dbb-99f5-cfe1befa9659"),
-                            ISBN = "625899f5",
+                            ISBN = "c896cee0",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = true,
                             Name = "Book 4"
@@ -137,7 +137,7 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("765d0dac-fe8c-447d-a238-f2d941a919aa"),
                             AuthorId = new Guid("a8305503-a8da-4830-bcec-fa985e594a90"),
-                            ISBN = "b9c5e441",
+                            ISBN = "d91e3a2b",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = true,
                             Name = "Book 5"
@@ -146,7 +146,7 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("7f039958-66fc-4b1a-9234-a3775c00cbe6"),
                             AuthorId = new Guid("e5d7b08b-6c9c-4dbb-99f5-cfe1befa9659"),
-                            ISBN = "f890d695",
+                            ISBN = "3326075a",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = true,
                             Name = "Book 6"
@@ -155,7 +155,7 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("f95b5bbe-daa9-4b45-9db7-dfff0126d384"),
                             AuthorId = new Guid("e5d7b08b-6c9c-4dbb-99f5-cfe1befa9659"),
-                            ISBN = "2f4c0da0",
+                            ISBN = "fdd6be84",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = true,
                             Name = "Book 7"
@@ -164,7 +164,7 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("442daaec-0a77-48b2-b236-140fd3636cdb"),
                             AuthorId = new Guid("a8305503-a8da-4830-bcec-fa985e594a90"),
-                            ISBN = "5cb66262",
+                            ISBN = "1b6caaed",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = true,
                             Name = "Book 8"
@@ -173,7 +173,7 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("094ada91-108c-42d2-876b-a982db803495"),
                             AuthorId = new Guid("503939b1-a170-4474-aa31-f89f5c878bbb"),
-                            ISBN = "eb45218b",
+                            ISBN = "d5ab77cf",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = true,
                             Name = "Book 9"
@@ -182,7 +182,7 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("444e0e9b-51ce-4776-ab84-0031ae083cc4"),
                             AuthorId = new Guid("e5d7b08b-6c9c-4dbb-99f5-cfe1befa9659"),
-                            ISBN = "23498a8f",
+                            ISBN = "e43f0a42",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = true,
                             Name = "Book 10"
@@ -191,18 +191,18 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("517c37bb-720c-48d5-8e26-8d2ed1e3933a"),
                             AuthorId = new Guid("a8305503-a8da-4830-bcec-fa985e594a90"),
-                            BorrowedBy = "Onur Derman",
-                            ISBN = "c19910ac",
+                            BorrowedBy = "ONUR DERMAN",
+                            ISBN = "f1589a02",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = false,
                             Name = "Book 11",
-                            ReturnDate = new DateTimeOffset(new DateTime(2023, 12, 31, 16, 50, 56, 707, DateTimeKind.Unspecified).AddTicks(9553), new TimeSpan(0, 3, 0, 0, 0))
+                            ReturnDate = new DateTimeOffset(new DateTime(2024, 1, 3, 0, 13, 27, 522, DateTimeKind.Unspecified).AddTicks(4939), new TimeSpan(0, 3, 0, 0, 0))
                         },
                         new
                         {
                             Id = new Guid("3c042ca7-6ebc-4e8c-80c0-cd65f7ebc021"),
                             AuthorId = new Guid("e5d7b08b-6c9c-4dbb-99f5-cfe1befa9659"),
-                            ISBN = "9c11a8e2",
+                            ISBN = "c6a02dc6",
                             ImageUrl = "images\\book\\default.jpg",
                             IsAvailable = true,
                             Name = "Book 12"
