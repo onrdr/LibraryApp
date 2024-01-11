@@ -1,5 +1,6 @@
 # Library Management Web Project 
-![library](https://github.com/onrdr/LibraryApp/assets/106915107/b03d8170-f9d1-43a1-b497-26606dbee02e)
+![libraryApp](https://github.com/onrdr/LibraryApp/assets/106915107/3a224877-5f54-4b1d-b62d-ef778fb22cb2)
+
 
 This project facilitates library attendants in managing the library's book inventory, lending books to users, and tracking their return.
 
