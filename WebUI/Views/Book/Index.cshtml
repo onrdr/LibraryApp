@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Book List";
+}
+
+<div class="container mt-2">
+    <div class="card shadow border-0 rounded">
+        <div class="card-header">
+            <div class="row p-3">
+                <div class="col-6">
+                    <h2 class="text-info">Book List</h2>
+                </div>
+                <div class="col-6 text-end">
+                    <a asp-controller="Book" asp-action="Add" class="btn btn-info shadow rounded">
+                        <i class="bi bi-plus-circle"></i> Add New Book
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="tblBook" class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Author Name</th>
+                            <th>ISBN</th>
+                            <th>Status</th>
+                            <th>Borrowed By</th>
+                            <th>LibraryID</th>
+                            <th>Return Date</th>
+                            <th>Lend / Return</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/book.js"></script>
+}

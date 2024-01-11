@@ -1,0 +1,49 @@
+﻿@model LendBookViewModel
+
+@{
+    ViewData["Title"] = "Lend Book";
+}
+
+<div class="card shadow border-0 rounded offset-2 col-8 mt-5">
+    <div class="card-header">
+        <div class="row p-3">
+            <div class="col-6">
+                <h2 class="text-info">Lend Book</h2>
+            </div>
+            <div class="col-6 text-end">
+                <a href="#" id="createBorrowerBtn" class="btn btn-info shadow rounded" data-bs-toggle="modal" data-bs-target="#createBorrowerModal">
+                    <i class="bi bi-plus-circle"></i> Create New Borrower
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-controller="Book" asp-action="Lend">
+            <input asp-for="ImageUrl" hidden />
+            <input asp-for="Id" hidden />
+            <div class="row">
+                <div class="col-7">
+
+                    <partial name="_LendBookForm" data="@Model" />
+
+                </div>
+                <div class="col-5">
+                    <img class="p-3" src="~/@Model.ImageUrl"
+                         style="width:100%; border-radius:10px; border:1px solid #ffffff" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<partial name="_AddBorrowerModal" />
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+    <script src="~/js/addBorrower.js"></script>
+}

@@ -1,0 +1,57 @@
+﻿@model AddBorrowerViewModel
+
+@{
+    ViewData["Title"] = "Add New Borrower";
+
+    var libraryBorrowerId = Guid.NewGuid().ToString()[..8];
+}
+
+<div class="renderCard">
+    <div class="card shadow border-0 rounded offset-2 col-8 mt-5">
+        <div class="card-header">
+            <div class="row p-3">
+                <h2 class="text-info">Add New Borrower</h2>
+            </div>
+            <div class="row">
+                <span class="bg-warning rounded">NOTE: Library Borrower Id is generated automatically. Please share it with the borrower.</span>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <form method="post" asp-controller="Borrower" asp-action="Add" enctype="multipart/form-data">
+                
+                <div class="border p-3">
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="form-floating py-2 col-12 mb-3">
+                                <input asp-for="Name" class="form-control border-0 shadow rounded" />
+                                <label asp-for="Name" class="ms-0"></label>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating py-2 col-12 mb-3">
+                                <input asp-for="LibraryBorrowerId" class="form-control border-0 shadow rounded" value="@libraryBorrowerId" readonly/>
+                                <label asp-for="LibraryBorrowerId" class="ms-0"></label>
+                                <span asp-validation-for="LibraryBorrowerId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <button type="submit" class="form-control btn btn-success shadow">Add Borrower</button>
+                        </div>
+                        <div class="col-6">
+                            <a asp-controller="Book" asp-action="Index" class="form-control btn btn-outline-info shadow">Back To List</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

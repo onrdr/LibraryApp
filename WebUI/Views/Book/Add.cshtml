@@ -1,0 +1,36 @@
+﻿@model AddBookViewModel
+
+@{
+    ViewData["Title"] = "Add New Book";
+}
+
+<div class="card shadow border-0 rounded offset-2 col-8 mt-5">
+    <div class="card-header">
+        <div class="row p-3">
+            <h2 class="text-info">Add New Book to Library</h2>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <form method="post" asp-controller="Book" asp-action="Add" enctype="multipart/form-data">
+            <div class="border p-3">
+
+                <partial name="_CreateBookForm" data="@Model" />
+
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <button type="submit" class="form-control btn btn-success shadow">Add Book</button>
+                    </div>
+                    <div class="col-6 mb-2">
+                        <a asp-controller="Book" asp-action="Index" class="form-control btn btn-outline-secondary">Back To List</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
