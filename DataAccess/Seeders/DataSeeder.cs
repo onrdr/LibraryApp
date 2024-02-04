@@ -1,4 +1,5 @@
 ﻿using DataAccess.Seeders.EntitySeeders;
+using DataAccess.Seeders.IdentitySeeders;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Seeders;
@@ -10,7 +11,10 @@ public static class DataSeeder
         modelBuilder
             .SeedAuthors()
             .SeedBorrowers()
-            .SeedBooks();
+            .SeedBooks()
+            .SeedRoles()
+            .SeedAppUsers()
+            .SeedAppUserRoles();
 
         return modelBuilder;
     }

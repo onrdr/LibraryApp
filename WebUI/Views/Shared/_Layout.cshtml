@@ -15,7 +15,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibraryApp</a>
+                <a class="navbar-brand "><i class="bi bi-book"></i> Online Library</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,11 +23,48 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark btn btn-outline-success ms-5" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark ms-5" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house"></i> Home
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark btn btn-outline-info ms-3" asp-controller="Book" asp-action="Index">Book List</a>
-                        </li>
+
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item ms-auto">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Login">
+                                    <i class="bi bi-box-arrow-in-right"></i> Login
+                                </a>
+                            </li>
+                        }
+                        else if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark ms-3" asp-controller="Book" asp-action="Index">
+                                    <i class="bi bi-list-ol"></i> Book List
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark ms-3" asp-controller="Book" asp-action="Add">
+                                    <i class="bi bi-bookmark-plus"></i> Add New Book
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark ms-3" href="#" id="createBorrowerBtn" data-bs-toggle="modal" data-bs-target="#createBorrowerModal">
+                                    <i class="bi bi-person-add"></i> Add New Borrower
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown ms-auto text-info">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-workspace"></i> Welcome @User.Identity.Name.ToString()
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="ChangePassword">Change Password</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -35,6 +72,9 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+
+            <partial name="_AddBorrowerModal" />
+
             @RenderBody()
         </main>
     </div>
@@ -50,6 +90,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/addBorrower.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
