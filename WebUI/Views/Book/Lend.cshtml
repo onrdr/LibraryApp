@@ -10,11 +10,6 @@
             <div class="col-6">
                 <h2 class="text-info">Lend Book</h2>
             </div>
-            <div class="col-6 text-end">
-                <a href="#" id="createBorrowerBtn" class="btn btn-info shadow rounded" data-bs-toggle="modal" data-bs-target="#createBorrowerModal">
-                    <i class="bi bi-plus-circle"></i> Create New Borrower
-                </a>
-            </div>
         </div>
     </div>
     <div class="card-body">
@@ -37,13 +32,8 @@
 </div>
 
 
-<partial name="_AddBorrowerModal" />
-
-
 @section Scripts {
     @{
         <partial name="_ValidationScriptsPartial" />
     }
-
-    <script src="~/js/addBorrower.js"></script>
 }

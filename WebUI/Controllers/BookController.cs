@@ -2,10 +2,12 @@
 using Business.Services.Abstract;
 using Core.Constants;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.ViewModels;
 
 namespace WebUI.Controllers;
+[Authorize]
 
 public class BookController(
     IBookService _bookService,

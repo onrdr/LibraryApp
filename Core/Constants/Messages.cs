@@ -5,6 +5,7 @@ public class Messages
     public const string BookNotFound = "Book not found";
     public const string AuthorNotFound = "Author not found";
     public const string BorrowerNotFound = "Borrower not found";
+    public const string UserNotFound = "User not found with this email";
 
     public const string EmptyBookList = "Book list is empty";
     public const string EmptyBorrowerList = "Borrower list is empty";
@@ -29,4 +30,9 @@ public class Messages
     public const string BookOverDueError = "This user is not allowed to borrow the book. The user has an overdue book.";
     public const string MaxBookCountError = "The user has reached max allowed number to borrow books";
 
+    public const string LoginFailed = "Login failed !!! Please check your credentials";
+    public const string LoginSuccessfull = "Login successfull";
+    public const string LogoutSuccessfull = "Logout successfull";
+    public const string InvalidCurrentPassword = "The current password is not correct";
+    public const string PasswordChangeSuccess = "Password has successfully changed";
 }
