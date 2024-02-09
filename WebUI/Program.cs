@@ -1,6 +1,7 @@
 using Serilog;
 using System.Text.Json.Serialization;
 using WebUI.ExtensionMethods;
+using WebUI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ builder.Services.AddControllersWithViews().AddJsonOptions(options =>
 
 
 builder.Services.AddInfrastructure(builder);
+
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 builder.Host.UseSerilog((_, config) =>
     config.ReadFrom.Configuration(builder.Configuration));
@@ -29,6 +33,8 @@ if (!app.Environment.IsDevelopment())
 app.UseRouting();
 
 app.UseHttpsRedirection();
+
+app.UseExceptionHandler();
 
 app.UseStaticFiles();
 
