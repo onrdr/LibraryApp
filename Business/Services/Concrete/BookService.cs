@@ -122,7 +122,7 @@ public class BookService(
         var authorResult = await _authorService.GetAuthorByNameAsync(model.AuthorName, ct);
         if (!authorResult.Success)
         {
-            var author = new Author { Name = model.AuthorName };
+            var author = new Author { Name = model.AuthorName.Trim() };
             bookToAdd.Author = author;
             return;
         }
