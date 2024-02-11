@@ -8,7 +8,8 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<AddBookViewModel, Book>();
+        CreateMap<AddBookViewModel, Book>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.Trim()));
         CreateMap<AddBorrowerViewModel, Borrower>();
 
         CreateMap<Book, ListBookViewModel>()
