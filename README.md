@@ -85,3 +85,12 @@ This project facilitates library attendants in managing the library's book inven
 - All data will be seeded to your database
 
 ### 5- Run the program
+Login Credential
+- username:
+```
+admin@test.com
+```
+- password:
+```
+Admin1*
+```
