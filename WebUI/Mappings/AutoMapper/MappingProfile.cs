@@ -10,7 +10,9 @@ public class MappingProfile : Profile
     {
         CreateMap<AddBookViewModel, Book>()
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.Trim()));
-        CreateMap<AddBorrowerViewModel, Borrower>();
+
+        CreateMap<AddBorrowerViewModel, Borrower>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.Trim()));
 
         CreateMap<Book, ListBookViewModel>()
             .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.Name))
