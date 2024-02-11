@@ -23,8 +23,17 @@
 
                 </div>
                 <div class="col-5">
-                    <img class="p-3" src="~/@Model.ImageUrl"
-                         style="width:100%; border-radius:10px; border:1px solid #ffffff" />
+                    @if (Model.ImageUrl is not null)
+                    {
+                        <img class="p-3" src="~/@Model.ImageUrl"
+                             style="width:100%; border-radius:10px; border:1px solid #ffffff" />
+                    }
+                    else
+                    {
+                        <img class="p-3" src="~/images/book/default.jpg"
+                             style="width:100%; border-radius:10px; border:1px solid #ffffff" />
+                    }
+
                 </div>
             </div>
         </form>
