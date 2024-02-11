@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Lend Book";
+
+    var imageSrc = Model.ImageUrl ??= "~/images/book/default.jpg";
 }
 
 <div class="card shadow border-0 rounded offset-2 col-8 mt-5">
@@ -23,17 +25,8 @@
 
                 </div>
                 <div class="col-5">
-                    @if (Model.ImageUrl is not null)
-                    {
-                        <img class="p-3" src="~/@Model.ImageUrl"
-                             style="width:100%; border-radius:10px; border:1px solid #ffffff" />
-                    }
-                    else
-                    {
-                        <img class="p-3" src="~/images/book/default.jpg"
-                             style="width:100%; border-radius:10px; border:1px solid #ffffff" />
-                    }
-
+                    <img class="p-3" src="~/images/book/default.jpg"
+                         style="width:100%; border-radius:10px; border:1px solid #ffffff" />
                 </div>
             </div>
         </form>
