@@ -26,4 +26,14 @@ public class BookRepository(ApplicationDbContext dbContext) : BaseRepository<Boo
 
         return books;
     }
+
+    public async Task<bool> CheckIfBookAlreadyExistsWithIsbnAsync(string isbn, CancellationToken ct)
+        =>  await _dataContext.Books.AnyAsync(b => b.ISBN == isbn, ct);
+
+    public async Task<bool> CheckIfBookExistsWithSameNameAndSameAuthor(string bookName, string authorName, CancellationToken ct)
+    {
+        return await _dataContext.Books.AnyAsync(b => 
+                b.Name.ToLower().Trim() == bookName.ToLower().Trim()
+                && b.Author.Name.ToLower().Trim() == authorName.ToLower().Trim(), ct);
+    }
 }

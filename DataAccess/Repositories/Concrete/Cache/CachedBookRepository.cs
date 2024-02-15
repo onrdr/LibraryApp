@@ -59,6 +59,12 @@ public class CachedBookRepository(
         });
     }
 
+    public async Task<bool> CheckIfBookAlreadyExistsWithIsbnAsync(string isbn, CancellationToken ct)
+        => await _decorated.CheckIfBookAlreadyExistsWithIsbnAsync(isbn, ct);
+
+    public async Task<bool> CheckIfBookExistsWithSameNameAndSameAuthor(string bookName, string authorName, CancellationToken ct)
+        => await _decorated.CheckIfBookExistsWithSameNameAndSameAuthor(bookName, authorName, ct);
+
     public async Task<int> AddAsync(Book entity, CancellationToken ct)
     {
         int result = await _decorated.AddAsync(entity, ct);
@@ -73,6 +79,7 @@ public class CachedBookRepository(
         return result;
     }
 
+    #region Helper Methods
     private void RemoveAllCachedKeys(int result)
     {
         if (result > 0)
@@ -85,4 +92,5 @@ public class CachedBookRepository(
             CachedKeys.Clear();
         }
     }
+    #endregion
 }

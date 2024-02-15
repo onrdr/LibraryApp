@@ -86,23 +86,19 @@ public class BookService(
     #region Helper Methods
     private async Task<IResult> CheckIfBookAlreadyExistsAsync(AddBookViewModel model, CancellationToken ct)
     {
-        var bookList = await _bookRepository.GetAllBooksWithAuthorAndBorrowerAsync(c => true, ct);
-
-        if (bookList is not null && bookList.Any(b => b.ISBN == model.ISBN))
+        var bookExistWithIsbn = await _bookRepository.CheckIfBookAlreadyExistsWithIsbnAsync(model.ISBN, ct);
+        if (bookExistWithIsbn)
         {
             return new ErrorResult(Messages.IsbnAlreadyExists);
         }
 
-        return CheckIfBookExistsWithSameNameAndSameAuthor(model, bookList);
+        return await CheckIfBookExistsWithSameNameAndSameAuthor(model, ct);
     }
 
-    private static IResult CheckIfBookExistsWithSameNameAndSameAuthor(AddBookViewModel model, IEnumerable<Book>? bookList)
+    private async Task<IResult> CheckIfBookExistsWithSameNameAndSameAuthor(AddBookViewModel model, CancellationToken ct)
     {
-        bool newBookAlreadyExist = bookList is not null
-                    && bookList.Any(c => c.Name.Equals(model.Name, StringComparison.CurrentCultureIgnoreCase)
-                    && c.Author.Name.Equals(model.AuthorName, StringComparison.CurrentCultureIgnoreCase));
-
-        return newBookAlreadyExist
+        var bookExists = await _bookRepository.CheckIfBookExistsWithSameNameAndSameAuthor(model.Name, model.AuthorName, ct);
+        return bookExists
             ? new ErrorResult(Messages.BookAlreadyExists)
             : new SuccessResult();
     }
