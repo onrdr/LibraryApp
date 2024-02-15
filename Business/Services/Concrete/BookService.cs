@@ -87,12 +87,10 @@ public class BookService(
     private async Task<IResult> CheckIfBookAlreadyExistsAsync(AddBookViewModel model, CancellationToken ct)
     {
         var bookExistWithIsbn = await _bookRepository.CheckIfBookAlreadyExistsWithIsbnAsync(model.ISBN, ct);
-        if (bookExistWithIsbn)
-        {
-            return new ErrorResult(Messages.IsbnAlreadyExists);
-        }
 
-        return await CheckIfBookExistsWithSameNameAndSameAuthor(model, ct);
+        return bookExistWithIsbn 
+            ? new ErrorResult(Messages.IsbnAlreadyExists)
+            : await CheckIfBookExistsWithSameNameAndSameAuthor(model, ct);
     }
 
     private async Task<IResult> CheckIfBookExistsWithSameNameAndSameAuthor(AddBookViewModel model, CancellationToken ct)

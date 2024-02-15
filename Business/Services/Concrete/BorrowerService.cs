@@ -5,7 +5,6 @@ using Core.Utilities.Results;
 using DataAccess.Repositories.Abstract;
 using Models.Entities.Concrete;
 using Models.ViewModels;
-using System.Linq.Expressions;
 
 namespace Business.Services.Concrete;
 
@@ -32,15 +31,6 @@ public class BorrowerService(
 
         return new SuccessDataResult<Borrower>(data: borrower);
     }
-
-    public async Task<IDataResult<IEnumerable<Borrower>>> GetAllBorrowersWithBooksAsync(Expression<Func<Borrower, bool>> predicate, CancellationToken ct)
-    {
-        var borrowerList = await _borrowerRepository.GetAllBorrowersWithBooksAsync(predicate, ct);
-
-        return borrowerList is not null && borrowerList.Any()
-            ? new SuccessDataResult<IEnumerable<Borrower>>(data: borrowerList)
-            : new ErrorDataResult<IEnumerable<Borrower>>(message: Messages.EmptyBorrowerList);
-    }
     #endregion
 
     #region Add Borrower
@@ -63,18 +53,19 @@ public class BorrowerService(
     private async Task<IDataResult<Borrower>> CheckIfBorrowerAllowedToBorrowBooksAsync(string libraryBorrowerId, CancellationToken ct)
     {
         var hasOverDueBook = await _borrowerRepository.DoesBorrowerHaveOverDueBookAsync(libraryBorrowerId, ct);
-        if (hasOverDueBook)
-        {
-            return new ErrorDataResult<Borrower>(message: Messages.BookOverDueError);
-        }
 
+        return hasOverDueBook
+            ? new ErrorDataResult<Borrower>(message: Messages.BookOverDueError)
+            : await CheckIfBorrowerReachedMaximumAllowedBookCount(libraryBorrowerId, ct);
+    }
+
+    private async Task<IDataResult<Borrower>> CheckIfBorrowerReachedMaximumAllowedBookCount(string libraryBorrowerId, CancellationToken ct)
+    {
         var bookCount = await _borrowerRepository.GetBorrowerBookCountAsync(libraryBorrowerId, ct);
-        if (bookCount >= MAX_ALLOWED_BOOK_COUNT)
-        {
-            return new ErrorDataResult<Borrower>(message: Messages.MaxBookCountError);
-        }
 
-        return new SuccessDataResult<Borrower>();
+        return bookCount >= MAX_ALLOWED_BOOK_COUNT
+            ? new ErrorDataResult<Borrower>(message: Messages.MaxBookCountError)
+            : new SuccessDataResult<Borrower>();
     }
 
     private async Task<int> CompleteAddProcessAsync(AddBorrowerViewModel model, CancellationToken ct)
