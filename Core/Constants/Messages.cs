@@ -19,6 +19,9 @@ public class Messages
     public const string BookUpdateError = "Error occured while updating the book in the Database";
     public const string BorrowerUpdateError = "Error occured while updating the borrower in the Database";
 
+    public const string BorrowerDeleteSuccessfull = "Borrower successfully deleted";
+    public const string BorrowerDeleteError = "Error occured while deleting the borrower from Database";
+
     public const string BookAlreadyExists = "A Book already exists with this name and Author";
     public const string BorrowerAlreadyExists = "A Borrower already exists with this Library Id. Please change Library Borrower Id";
     public const string IsbnAlreadyExists = "A Book already exists with this ISBN";
@@ -29,6 +32,7 @@ public class Messages
 
     public const string BookOverDueError = "This user is not allowed to borrow the book. The user has an overdue book.";
     public const string MaxBookCountError = "The user has reached max allowed number to borrow books";
+    public const string BorrowerHasUnreturnedBooksError = "The user has unreturned books. You cannot delete";
 
     public const string LoginFailed = "Login failed !!! Please check your credentials";
     public const string LoginSuccessfull = "Login successfull";

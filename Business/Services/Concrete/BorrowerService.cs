@@ -31,6 +31,18 @@ public class BorrowerService(
 
         return new SuccessDataResult<Borrower>(data: borrower);
     }
+
+    public async Task<IDataResult<List<Borrower>>> GetAllBorrowersAsync(CancellationToken ct)
+    {
+        var borrowers = await _borrowerRepository.GetAllBorrowersAsync(ct);
+
+        if (borrowers is null || !borrowers.Any())
+        {
+            borrowers = [];
+        }
+
+        return new SuccessDataResult<List<Borrower>>(data: [.. borrowers]);
+    }
     #endregion
 
     #region Add Borrower
@@ -46,6 +58,27 @@ public class BorrowerService(
         return addResult > 0
             ? new SuccessResult(Messages.BorrowerAddSuccessfull)
             : new ErrorResult(Messages.BorrowerAddError);
+    }
+    #endregion
+
+    #region Delete Borrower
+    public async Task<IResult> DeleteBorrowerAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var borrower = await _borrowerRepository.GetBorrowerWithBooksAsync(id, cancellationToken);
+        if (borrower is null)
+        {
+            return new ErrorResult(Messages.BorrowerNotFound);
+        }
+
+        if (borrower.BorrowedBooks is not null && borrower.BorrowedBooks.Count > 0)
+        {
+            return new ErrorResult(Messages.BorrowerHasUnreturnedBooksError);
+        }
+
+        int deleteResult = await _borrowerRepository.DeleteAsync(borrower, cancellationToken);
+        return deleteResult > 0
+            ? new SuccessResult(Messages.BorrowerDeleteSuccessfull)
+            : new ErrorResult(Messages.BorrowerDeleteError);
     }
     #endregion
 

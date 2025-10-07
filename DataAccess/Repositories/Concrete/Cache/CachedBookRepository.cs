@@ -79,6 +79,14 @@ public class CachedBookRepository(
         return result;
     }
 
+    public async Task<int> DeleteAsync(Book entity, CancellationToken ct)
+    {
+        int result = await _decorated.DeleteAsync(entity, ct);
+        RemoveAllCachedKeys(result);
+        return result;
+    }
+
+
     #region Helper Methods
     private void RemoveAllCachedKeys(int result)
     {

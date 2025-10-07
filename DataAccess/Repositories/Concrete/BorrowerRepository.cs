@@ -5,7 +5,8 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Repositories.Concrete;
 
-public class BorrowerRepository(ApplicationDbContext context) : BaseRepository<Borrower>(context), IBorrowerRepository
+public class BorrowerRepository(ApplicationDbContext context) 
+    : BaseRepository<Borrower>(context), IBorrowerRepository
 {
     public async Task<Borrower?> GetBorrowerByLibraryBorrowerIdAsync(string libraryBorrowerId, CancellationToken ct)
     {
@@ -41,5 +42,21 @@ public class BorrowerRepository(ApplicationDbContext context) : BaseRepository<B
             .ToListAsync(ct);
 
         return borrowers;
+    }
+
+    public async Task<IEnumerable<Borrower>?> GetAllBorrowersAsync(CancellationToken ct)
+    {
+        var borrowers = await _dataContext.Borrowers.ToListAsync(ct);
+
+        return borrowers;
+    }
+
+    public async Task<Borrower?> GetBorrowerWithBooksAsync(Guid id, CancellationToken ct)
+    {
+        var borrower = await _dataContext.Borrowers
+            .Include(b => b.BorrowedBooks)
+            .FirstOrDefaultAsync(b => b.Id == id, ct);
+
+        return borrower;
     }
 }

@@ -9,4 +9,5 @@ public interface IBaseRepository<T> where T : class, IBaseEntity
     Task<IEnumerable<T>?> GetAllAsync(Expression<Func<T, bool>> predicate, CancellationToken ct);
     Task<int> AddAsync(T entity, CancellationToken ct);
     Task<int> UpdateAsync(T entity, CancellationToken ct);
+    Task<int> DeleteAsync(T entity, CancellationToken ct);
 }

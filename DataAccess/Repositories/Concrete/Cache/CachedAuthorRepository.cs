@@ -61,6 +61,13 @@ public class CachedAuthorRepository(
         return result;
     }
 
+    public async Task<int> DeleteAsync(Author entity, CancellationToken ct)
+    {
+        int result = await _decorated.DeleteAsync(entity, ct);
+        RemoveAllCachedKeys(result);
+        return result;
+    }
+
     private void RemoveAllCachedKeys(int result)
     {
         if (result > 0)
@@ -72,5 +79,5 @@ public class CachedAuthorRepository(
 
             CachedKeys.Clear();
         }
-    }
+    }    
 }

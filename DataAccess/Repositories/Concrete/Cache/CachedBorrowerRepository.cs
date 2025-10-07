@@ -59,6 +59,29 @@ public class CachedBorrowerRepository(
         });
     }
 
+    public async Task<IEnumerable<Borrower>?> GetAllBorrowersAsync(CancellationToken ct)
+    {
+        var key = $"get-all-borrowers";
+
+        return await _cache.GetOrCreateAsync(key, async entry =>
+        {
+            CachedKeys.Add(key);
+            entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(5));
+            return await _decorated.GetAllBorrowersAsync(ct);
+        });
+    }
+
+    public async Task<Borrower?> GetBorrowerWithBooksAsync(Guid id, CancellationToken ct)
+    {
+        var key = $"get-borrower-with-books-{id}";
+        return await _cache.GetOrCreateAsync(key, async entry =>
+        {
+            CachedKeys.Add(key);
+            entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(5));
+            return await _decorated.GetBorrowerWithBooksAsync(id, ct);
+        });
+    }
+
     public async Task<bool> DoesBorrowerHaveOverDueBookAsync(string libraryBorrowerId, CancellationToken ct)
     {
         return await _decorated.DoesBorrowerHaveOverDueBookAsync(libraryBorrowerId, ct);
@@ -79,6 +102,13 @@ public class CachedBorrowerRepository(
     public async Task<int> UpdateAsync(Borrower entity, CancellationToken ct)
     {
         int result = await _decorated.UpdateAsync(entity, ct);
+        RemoveAllCachedKeys(result);
+        return result;
+    }
+
+    public async Task<int> DeleteAsync(Borrower entity, CancellationToken ct)
+    {
+        int result = await _decorated.DeleteAsync(entity, ct);
         RemoveAllCachedKeys(result);
         return result;
     }

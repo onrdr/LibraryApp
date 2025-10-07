@@ -23,7 +23,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark ms-5" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link text-success ms-5" asp-controller="Home" asp-action="Index">
                                 <i class="bi bi-house"></i> Home
                             </a>
                         </li>
@@ -39,17 +39,22 @@
                         else if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark ms-3" asp-controller="Book" asp-action="Index">
+                                <a class="nav-link text-dark ms-3 btn btn-outline-warning" asp-controller="Book" asp-action="Index">
                                     <i class="bi bi-list-ol"></i> Book List
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark ms-3" asp-controller="Book" asp-action="Add">
+                                <a class="nav-link text-dark ms-3 btn btn-outline-warning" asp-controller="Borrower" asp-action="Index">
+                                    <i class="bi bi-list-ol"></i> Borrower List
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark ms-3 btn btn-outline-info" asp-controller="Book" asp-action="Add">
                                     <i class="bi bi-bookmark-plus"></i> Add New Book
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark ms-3" href="#" id="createBorrowerBtn" data-bs-toggle="modal" data-bs-target="#createBorrowerModal">
+                                <a class="nav-link text-dark ms-3 btn btn-outline-info" href="#" id="createBorrowerBtn" data-bs-toggle="modal" data-bs-target="#createBorrowerModal">
                                     <i class="bi bi-person-add"></i> Add New Borrower
                                 </a>
                             </li>

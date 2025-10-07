@@ -1,8 +1,4 @@
 ﻿
-@{ 
-    var libraryBorrowerId = Guid.NewGuid().ToString()[..8];
-}
-
 <div class="modal fade" id="createBorrowerModal" tabindex="-1" role="dialog" aria-labelledby="createBorrowerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -26,7 +22,7 @@
                     </div>
                     <div class="mt-3">
                         <div class="form-floating py-2 col-12 mb-3">
-                            <input type="text" id="libraryBorrowerId" name="libraryBorrowerId" class="form-control rounded shadow" value="@libraryBorrowerId" readonly/>
+                            <input type="text" id="libraryBorrowerId" name="libraryBorrowerId" class="form-control rounded shadow" readonly/>
                             <label for="libraryBorrowerId" class="ms-0">Library Borrower Id</label>
                             <span id="libraryBorrowerIdValidation" class="text-danger"></span>
                         </div>

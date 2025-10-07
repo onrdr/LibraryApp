@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Borrower List";
+}
+
+<div class="container mt-2">
+    <div class="card shadow border-0 rounded">
+        <div class="card-header">
+            <div class="row p-3">
+                <div class="col-6">
+                    <h2 class="text-info">Borrower List</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="tblBorrower" class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>LibraryBorrowerId</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/borrower.js"></script>
+}
